@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora IVA & Descuentos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="noise"></div>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">⟁</span>
+        <span class="logo-text">CalcIVA</span>
+      </div>
+      <div class="header-badge">v1.0 — Microservicio Activo</div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="hero">
+      <h1 class="hero-title">
+        Calcula tu<br />
+        <em>Valor Final</em>
+      </h1>
+      <p class="hero-sub">IVA · Descuentos · Precio exacto al instante</p>
+    </section>
+
+    <div class="layout">
+      <!-- FORMULARIO -->
+      <div class="card form-card">
+        <div class="card-label">FORMULARIO DE PRODUCTO</div>
+
+        <div class="form-group">
+          <label for="codigo">
+            Código de Producto
+            <span class="tag">alfanumérico</span>
+          </label>
+          <input
+            type="text"
+            id="codigo"
+            placeholder="Ej: PROD001, A12B"
+            autocomplete="off"
+          />
+          <span class="field-error" id="error-codigo"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="nombre">
+            Nombre del Producto
+            <span class="tag">solo letras</span>
+          </label>
+          <input
+            type="text"
+            id="nombre"
+            placeholder="Ej: Televisor Samsung"
+            autocomplete="off"
+          />
+          <span class="field-error" id="error-nombre"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="costoBase">
+            Costo Base
+            <span class="tag">numérico</span>
+          </label>
+          <div class="input-prefix-wrap">
+            <span class="prefix">$</span>
+            <input
+              type="number"
+              id="costoBase"
+              placeholder="100000"
+              min="0"
+              step="0.01"
+            />
+          </div>
+          <span class="field-error" id="error-costoBase"></span>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="iva">
+              IVA
+              <span class="tag">%</span>
+            </label>
+            <input
+              type="number"
+              id="iva"
+              placeholder="19"
+              min="0"
+              max="100"
+              step="0.01"
+            />
+            <span class="field-error" id="error-iva"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="descuento">
+              Descuento
+              <span class="tag">%</span>
+            </label>
+            <input
+              type="number"
+              id="descuento"
+              placeholder="15"
+              min="0"
+              max="100"
+              step="0.01"
+            />
+            <span class="field-error" id="error-descuento"></span>
+          </div>
+        </div>
+
+        <button class="btn-calcular" id="btnCalcular" onclick="calcular()">
+          <span class="btn-text">Calcular Valor Final</span>
+          <span class="btn-icon">→</span>
+        </button>
+      </div>
+
+      <!-- RESULTADO -->
+      <div class="card result-card" id="resultCard">
+        <div class="card-label">RESPUESTA DEL SERVIDOR</div>
+
+        <div class="result-empty" id="resultEmpty">
+          <div class="empty-icon">⟁</div>
+          <p>Completa el formulario y<br />presiona <strong>Calcular</strong></p>
+        </div>
+
+        <div class="result-content" id="resultContent" style="display:none">
+          <div class="result-status" id="resultStatus"></div>
+          <div class="result-titulo" id="resultTitulo"></div>
+
+          <div class="result-breakdown" id="resultBreakdown"></div>
+
+          <div class="result-total" id="resultTotal"></div>
+
+          <div class="result-raw">
+            <div class="raw-label">JSON recibido</div>
+            <pre id="resultJson"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <span>Microservicio · POST :3010 /calcularValorFinal/</span>
+    <a href="http://localhost:3010/api-docs" target="_blank" class="swagger-link">
+      Ver Swagger Docs ↗
+    </a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
