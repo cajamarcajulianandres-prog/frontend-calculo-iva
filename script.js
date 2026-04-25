@@ -1,5 +1,5 @@
 // ─── CONFIGURACIÓN ───────────────────────────────────────────────
-const API_URL = "http://localhost:3010/calcularValorFinal/";
+const API_URL = "https://backend-calculo-iva.onrender.com/calcularValorFinal/";
 
 // ─── VALIDACIONES ────────────────────────────────────────────────
 function validarCodigo(v) {
